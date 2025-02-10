@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctuary Girls Hostel Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-container" class="auth-container">
+        <div class="auth-card">
+            <h2><i class="fas fa-user-lock"></i> Hostel Portal Login</h2>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Username" autocomplete="username">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+            </div>
+            <button class="primary-btn" onclick="login()">Sign In</button>
+        </div>
+    </div>
+    
+    <div id="app-container" class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1><i class="fas fa-home"></i> Sanctuary Girls Hostel</h1>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Kalikasthan, Kathmandu</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:9851134338">9851134338</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:shresthaxok@gmail.com">shresthaxok@gmail.com</a></p>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Room Management Section -->
+            <section class="management-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-door-open"></i> Room Allocation</h2>
+                    <div class="action-buttons master-only">
+                        <button class="icon-btn" onclick="openRoomModal('add')"><i class="fas fa-plus"></i></button>
+                        <button class="icon-btn" onclick="openRoomModal('edit')"><i class="fas fa-edit"></i></button>
+                        <button class="icon-btn danger" onclick="deleteRoom()"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <div id="roomList" class="data-list"></div>
+            </section>
+
+            <!-- Hostel Rules Section -->
+            <section class="management-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Hostel Rules</h2>
+                    <div class="action-buttons master-only">
+                        <button class="icon-btn" onclick="openRuleModal('add')"><i class="fas fa-plus"></i></button>
+                        <button class="icon-btn danger" onclick="deleteRule()"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <ul id="rulesList" class="data-list"></ul>
+            </section>
+
+            <!-- Photo Gallery Section -->
+            <section class="management-card gallery-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-camera"></i> Photo Gallery</h2>
+                    <div class="action-buttons master-only">
+                        <label class="icon-btn" for="photoUpload">
+                            <i class="fas fa-upload"></i>
+                            <input type="file" id="photoUpload" accept="image/*" hidden>
+                        </label>
+                        <button class="icon-btn danger" onclick="clearGallery()"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <div id="gallery" class="gallery-grid"></div>
+            </section>
+        </main>
+
+        <!-- Modals -->
+        <div id="roomModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3><i class="fas fa-edit"></i> Room Management</h3>
+                <input type="text" id="roomInput" placeholder="Room Number (e.g., 101)">
+                <input type="text" id="studentInput" placeholder="Student Name">
+                <button class="primary-btn" onclick="saveRoom()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
